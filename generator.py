@@ -18,7 +18,8 @@ class Person:
     def serialize(self):
         name_bytes = self.name.encode('utf-8')
         bio_bytes = self.bio.encode('utf-8')
-        return struct.pack('>B I B B', self.TYPE_ID, self.person_id, self.age, len(name_bytes)) + name_bytes + struct.pack('>B', len(bio_bytes)) + bio_bytes
+        packet = struct.pack('>B I B B', self.TYPE_ID, self.person_id, self.age, len(name_bytes)) + name_bytes + struct.pack('>B', len(bio_bytes)) + bio_bytes
+        return struct.pack('>I', len(packet)) + packet
 
     def to_dict(self):
         return {
@@ -40,7 +41,8 @@ class Book:
     def serialize(self):
         title_bytes = self.title.encode('utf-8')
         author_bytes = self.author.encode('utf-8')
-        return struct.pack('>B 13s I B', self.TYPE_ID, self.isbn.encode('utf-8'), self.pages, len(title_bytes)) + title_bytes + struct.pack('>B', len(author_bytes)) + author_bytes
+        packet = struct.pack('>B 13s I B', self.TYPE_ID, self.isbn.encode('utf-8'), self.pages, len(title_bytes)) + title_bytes + struct.pack('>B', len(author_bytes)) + author_bytes
+        return struct.pack('>I', len(packet)) + packet
 
     def to_dict(self):
         return {
@@ -62,7 +64,8 @@ class Product:
     def serialize(self):
         name_bytes = self.name.encode('utf-8')
         description_bytes = self.description.encode('utf-8')
-        return struct.pack('>B I H B', self.TYPE_ID, self.product_id, self.price, len(name_bytes)) + name_bytes + struct.pack('>B', len(description_bytes)) + description_bytes
+        packet = struct.pack('>B I H B', self.TYPE_ID, self.product_id, self.price, len(name_bytes)) + name_bytes + struct.pack('>B', len(description_bytes)) + description_bytes
+        return struct.pack('>I', len(packet)) + packet
 
     def to_dict(self):
         return {

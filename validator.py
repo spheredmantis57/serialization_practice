@@ -5,14 +5,16 @@ import filecmp
 import json
 
 # Global variables for easy configuration
-BINARY_DIR = "./"              # Change this to the directory path of your binary
-OUT_PATH = os.path.join(BINARY_DIR, "out.dat")
+BINARY_DIR = "/tmp"              # Change this to the directory path of your binary
+OUT_PATH = "out.dat"
 BINARY_NAME = "your_binary"    # Change this to the name of your binary
 BINARY_FULL = os.path.join(BINARY_DIR, BINARY_NAME)
 TEST_FILE_PATH = "test_files"  # Directory where the test files are located
 
 @pytest.fixture(autouse=True)
 def cleanup():
+    if os.path.exists(OUT_PATH):
+        os.remove(OUT_PATH)
     yield
     if os.path.exists(OUT_PATH):
         os.remove(OUT_PATH)

@@ -12,6 +12,7 @@ There are three data structures: Person, Book, and Product. Each data structure 
 1. Person
 
 ```
+Packet Size: 4 bytes (uint32_t, big-endian)
 Type ID: 1 byte (value: 1)
 ID: 4 bytes (uint32_t, big-endian)
 Age: 1 byte (uint32_t)
@@ -22,6 +23,7 @@ Bio: Variable length (string, prefixed with 1 byte indicating length)
 2. Book
 
 ```
+Packet Size: 4 bytes (uint32_t, big-endian)
 Type ID: 1 byte (value: 2)
 ISBN: 13 bytes (fixed-length string)
 Pages: 4 bytes (uint32_t, big-endian)
@@ -32,6 +34,7 @@ Author: Variable length (string, prefixed with 1 byte indicating length)
 3. Product
 
 ```
+Packet Size: 4 bytes (uint32_t, big-endian)
 Type ID: 1 byte (value: 3)
 Product ID: 4 bytes (uint32_t, big-endian)
 Price: 4 bytes (uint16_t, big-endian)
